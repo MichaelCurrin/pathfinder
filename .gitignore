@@ -5,3 +5,10 @@ __pycache__/
 
 # Symlink or actual directory for virtual environment
 virtualenv*
+
+# Local configuration
+pathfinder/etc/*.local.*
+
+# Input data
+pathfinder/var/lib/*.csv
+!pathfinder/var/lib/*.template
