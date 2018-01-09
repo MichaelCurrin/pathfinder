@@ -5,31 +5,7 @@ Main application file.
 Check whether inputs URIs are valid or not and either send an email with the
 result or print the result.
 """
-
-
-def send_mail(from_addr, to_addr, passwd, subject, msg):
-    """Send an email using Gmail using provided details and content.
-
-    @param from_addr:
-    @param to_addr:
-    @param passwd:
-    @param subject:
-    @param msg:
-
-    @return: None
-    """
-    pass
-
-
-def read_csv(fpath):
-    """Read path to CSV and return data.
-
-    @param fpath: path to input CSV file, as absolute path or relative to
-        the app dir.
-
-    @return: two-dimensional list representing rows and columns of CSV data.
-    """
-    pass
+from lib import read_csv, send_mail
 
 
 def validate_uri(uri):
