@@ -1,41 +1,56 @@
 """Initialisation file for lib directory."""
 import csv
 import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
-from lib import AppConf
+from .config import AppConf
 
 conf = AppConf()
 
 
-def send_mail(subject, body, from_addr=None, to_addr=None, passwd=None):
+def send_mail(subject, plain_text, html=None, from_addr=None, passwd=None,
+              to_addr=None):
     """Send an email with Gmail using provided details and content.
+
+    Thanks to StackOverflow answer:
+        https://stackoverflow.com/questions/882712/sending-html-email-using-python
 
     @param subject:
     @param body:
 
     @param from_addr:
-    @param to_addr:
     @param passwd:
+    @param to_addr:
 
     @return: None
     """
     if not from_addr:
-        from_addr = conf.get('Email', 'from')
         to_addr = conf.get('Email', 'to')
+        from_addr = conf.get('Email', 'from')
         passwd = conf.get('Email', 'password')
 
-    msg = MIMEMultipart()
-    msg['From'] = from_addr
+    assert from_addr.endswith('@gmail.com'), "Configured from address must be"\
+        " a Gmail account."
+
+    msg = MIMEMultipart('alternative')
     msg['To'] = to_addr
+    msg['From'] = from_addr
     msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain'))
+
+    msg.attach(MIMEText(plain_text, 'plain'))
+    if html:
+        msg.attach(MIMEText(html, 'html'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
+    # Recommended in a tutorial.
     server.ehlo()
     server.starttls()
-    server.login(from_addr, passwd)
+    try:
+        server.login(from_addr, passwd)
+    except smtplib.SMTPAuthenticationError:
+        raise ValueError("Invalid Username and Password. Update conf file and"
+                         " try again.")
     text = msg.as_string()
     server.sendmail(from_addr, to_addr, text)
     server.quit()
@@ -58,17 +73,18 @@ def read_csv(fpath):
 
 
 def test():
-    """Send the sample CSV to the configure email address."""
+    """Send the sample CSV to the configured email address."""
     import os
     import json
     from config import AppConf
     conf = AppConf()
-    fpath = os.path.join(conf.appDir, 'var', 'lib', 'input.csv.template')
+    fpath = os.path.join(conf.appDir, 'var', 'lib', 'paths.csv.template')
     data = read_csv(fpath)
+    indented_text = json.dumps(data, indent=4)
 
     send_mail(
         subject="TEST Python",
-        body=json.dumps(data, ident=4)
+        plain_text=indented_text,
     )
 
 
