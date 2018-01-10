@@ -1,6 +1,6 @@
 """Application configuration file."""
 import os
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 
 
 class AppConf(SafeConfigParser):
