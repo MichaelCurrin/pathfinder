@@ -1,2 +1,2 @@
-title,URI
-my title,https://subdomain.domain.com/path
+title,URI,notify
+my title,https://subdomain.domain.com/path,always
