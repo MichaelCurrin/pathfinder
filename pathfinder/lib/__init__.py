@@ -16,12 +16,15 @@ def send_mail(subject, plain_text, html=None, from_addr=None, passwd=None,
     Thanks to StackOverflow answer:
         https://stackoverflow.com/questions/882712/sending-html-email-using-python
 
-    @param subject:
-    @param body:
-
-    @param from_addr:
-    @param passwd:
-    @param to_addr:
+    @param subject: Subject for mail.
+    @param plain_text: Body of mail in plain text.
+    @param html: Optional body of mail in HTML form.
+    @param from_addr: Email address to send from. If not supplied, configured
+        default value is used.
+    @param passwd: Password of email address to send from. If not the supplied,
+        the configured default value is used.
+    @param to_addr: Email address to send to. If not supplied, the configured
+        default is used.
 
     @return: None
     """
@@ -43,8 +46,6 @@ def send_mail(subject, plain_text, html=None, from_addr=None, passwd=None,
         msg.attach(MIMEText(html, 'html'))
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
-    # Recommended in a tutorial.
-    server.ehlo()
     server.starttls()
     try:
         server.login(from_addr, passwd)
