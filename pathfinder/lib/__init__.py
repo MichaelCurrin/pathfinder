@@ -4,7 +4,10 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from formencode.validators import Email
+
 from .config import AppConf
+
 
 conf = AppConf()
 
@@ -33,7 +36,11 @@ def send_mail(subject, plain_text, html=None, from_addr=None, passwd=None,
         from_addr = conf.get('Email', 'from')
         passwd = conf.get('Email', 'password')
 
-    assert from_addr.endswith('@gmail.com'), "Configured from address must be"\
+    # Raise Invalid error for bad email formatting.
+    Email.to_python(to_addr)
+    Email.to_python(from_addr)
+
+    assert from_addr.endswith("@gmail.com"), "Configured from address must be"\
         " a Gmail account."
 
     msg = MIMEMultipart('alternative')
@@ -61,7 +68,8 @@ def read_csv(fpath):
     """Read path to CSV and return data.
 
     @param fpath: path to input CSV file, as absolute path or relative to
-        the app dir.
+        the app dir. The header row is required and will be used to create
+        column names as keys.
 
     @return data: list of CSV data, where each element is a row in the CSV
         represented as a dictionary.
