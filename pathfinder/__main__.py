@@ -2,8 +2,8 @@
 """
 Main application file.
 
-Check whether inputs URIs are valid or not and either send an email with the
-result. Also prints all results.
+Check whether inputs URIs are valid or not and produces a report which
+can be logged and emailed.
 """
 import argparse
 import datetime
@@ -31,7 +31,10 @@ def validate_uri(uri):
     print("Validating: {0}".format(uri))
 
     try:
-        response = requests.get(uri, timeout=conf.getfloat('Scrape', 'timeout'))
+        response = requests.get(
+            uri,
+            timeout=conf.getfloat('Scrape', 'timeout')
+        )
     except requests.exceptions.RequestException:
         return 'Invalid'
 
@@ -166,7 +169,8 @@ def run(uri_data, subject=None):
         print(row)
 
     if subject:
-        # Handle mail an HTML report, for rows matching notification conditions.
+        # Handle mailing an HTML report, for rows matching
+        # notification conditions.
         matched_rows = []
         for data in cleaned_data:
             if (data['notify'] == 'always' or
@@ -220,39 +224,13 @@ def main():
     """
     parser = argparse.ArgumentParser(
         description="Pathfinder app. Expects input values set on command-line"
-            " or in a CSV file, then prints output and sends an email"
-            " for notification conditions which are met."
+        " or in a CSV file, then prints output and sends an email"
+        " for notification conditions which are met."
     )
 
     subparsers = parser.add_subparsers(
         help="commands",
         dest='command'
-    )
-
-    path_parser = subparsers.add_parser(
-        'file',
-        help="Specify persistent file containing rows of URI data to validate",
-    )
-    path_parser.add_argument(
-        'file',
-        metavar='PATH',
-        help="Path to CSV file. See var/lib/paths.csv.template for"
-            " required header format. A 'notify' value must be one of:"
-            " 'valid', 'invalid' or 'always'. URIs in all rows will be"
-            " validated, the results will be printed and a mail of just the"
-            " rows meeting the notify condition will be sent. Or no mail, if"
-            " no conditions are met."
-    )
-    path_parser.add_argument(
-        '-n', '--no-send',
-        action='store_true',
-        help="If supplied, override the default behavior and prevent a"
-            " mail from being sent."
-    )
-    path_parser.add_argument(
-        '--subject',
-        help="Subject to use in the mail. Defaults to value set on config file"
-            " if not set. Must be quoted to include spaces."
     )
 
     custom_parser = subparsers.add_parser(
@@ -262,7 +240,8 @@ def main():
     custom_parser.add_argument(
         'title',
         metavar='TITLE',
-        help="Short label describing the URI. Must be quoted to include spaces."
+        help="Short label describing the URI. Must be quoted to include"
+        " spaces."
     )
     custom_parser.add_argument(
         'uri',
@@ -273,12 +252,38 @@ def main():
         '-n', '--no-send',
         action='store_true',
         help="If supplied, override the default behavior and prevent a"
-            " mail from being sent."
+        " mail from being sent."
     )
     custom_parser.add_argument(
         '--subject',
         help="Subject to use in the mail. Defaults to value set on config file"
-            " if not set. Must be quoted to include spaces."
+        " if not set. Must be quoted to include spaces."
+    )
+
+    path_parser = subparsers.add_parser(
+        'file',
+        help="Specify persistent file containing rows of URI data to validate",
+    )
+    path_parser.add_argument(
+        'file',
+        metavar='PATH',
+        help="Path to CSV file. See var/lib/paths.csv.template for"
+        " required header format. A 'notify' value must be one of:"
+        " 'valid', 'invalid' or 'always'. URIs in all rows will be"
+        " validated, the results will be printed and a mail of just the"
+        " rows meeting the notify condition will be sent. Or no mail, if"
+        " no conditions are met."
+    )
+    path_parser.add_argument(
+        '-n', '--no-send',
+        action='store_true',
+        help="If supplied, override the default behavior and prevent a"
+        " mail from being sent."
+    )
+    path_parser.add_argument(
+        '--subject',
+        help="Subject to use in the mail. Defaults to value set on config file"
+        " if not set. Must be quoted to include spaces."
     )
 
     args = parser.parse_args()
