@@ -14,8 +14,7 @@ class AppConf(SafeConfigParser):
     """
 
     def __init__(self):
-        """
-        Initialise instance of AppConf class.
+        """Initialise instance of AppConf class.
 
         Read config files in three locations, expecting the first versioned
         file to always be present and the two optional files to either override
@@ -31,7 +30,7 @@ class AppConf(SafeConfigParser):
         confPaths = [os.path.join(self.appDir, 'etc', c) for c in etcConfNames]
 
         userConfigPath = os.path.join(
-            os.path.expanduser('~')
+            os.path.expanduser('~'),
             '.config',
             'pathfinder.conf'
         )
