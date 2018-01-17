@@ -247,7 +247,7 @@ def main():
     custom_parser.add_argument(
         'uri',
         metavar='URI',
-        help="URI to validate."
+        help="Web URI to validate."
     )
     custom_parser.add_argument(
         '-n', '--no-send',
@@ -290,8 +290,8 @@ def main():
     args = parser.parse_args()
 
     if not args.command:
-        # Force help to be shown if there are no arguments.
-        parser.print_help()
+        # Show minimal usage info if there are no commands or arguments.
+        parser.print_usage()
     else:
         if args.command == 'file':
             uri_data = read_csv(args.file)
