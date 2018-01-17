@@ -59,3 +59,5 @@ timeout: 3
 Creating a file at the first path is preferred for persisting values in the file, since a file at the second path would be lost if the repo is deleted. Also, the first path is shorter and therefore quicker to access from anywhere in the terminal. This may be useful if the app is ever setup to run as an installed application, so that one does not have to find the location of package in order to customise it.
 
 _TODO Consider for cross-platform use that ~/.config may not exist and needs instructions to be created on Mac or Linux. And may have a different convention on Windows, or may still be fine._
+
+Now that you're setup, you can follow the [Usage](Usage.md) instructions.
