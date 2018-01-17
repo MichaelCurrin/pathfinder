@@ -225,7 +225,7 @@ def main():
     )
 
     subparsers = parser.add_subparsers(
-        help="sub-command help",
+        help="commands",
         dest='command'
     )
 
