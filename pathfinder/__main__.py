@@ -268,8 +268,8 @@ def main():
     path_parser.add_argument(
         'file',
         metavar='PATH',
-        help="Path to CSV file. See var/lib/paths.csv.template for"
-        " required header format. A 'notify' value must be one of:"
+        help="Path to CSV file. See pathfinder/var/lib/paths.csv.template for"
+        " required header format. A 'notify' column value must be one of:"
         " 'valid', 'invalid' or 'always'. URIs in all rows will be"
         " validated, the results will be printed and a mail of just the"
         " rows meeting the notify condition will be sent. Or no mail, if"
@@ -283,8 +283,8 @@ def main():
     )
     path_parser.add_argument(
         '--subject',
-        help="Subject to use in the mail. Defaults to value set on config file"
-        " if not set. Must be quoted to include spaces."
+        help="Value to use as email subject and title. Must be quoted to "
+        "include spaces. If not set, defaults to value set in config file."
     )
 
     args = parser.parse_args()
