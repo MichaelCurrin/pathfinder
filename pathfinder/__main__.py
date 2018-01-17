@@ -228,6 +228,7 @@ def main():
         " for notification conditions which are met."
     )
 
+    # Set `dest` to make the chosen subparser name available at `args.command`.
     subparsers = parser.add_subparsers(
         help="commands",
         dest='command'
@@ -289,7 +290,8 @@ def main():
     args = parser.parse_args()
 
     if not args.command:
-        args.print_help()
+        # Force help to be shown if there are no arguments.
+        parser.print_help()
     else:
         if args.command == 'file':
             uri_data = read_csv(args.file)
