@@ -46,7 +46,7 @@ Ad hoc input
 
 Read in stored values
 
-1. Create a CSV file in `pathfinder/var/lib/`, based on the template file in the same directory. Or use the command below, pasting the contents after pressing enter and then pressing ctrl+D to end the file contents.
+1. Create a CSV file in `pathfinder/var/lib/`, based on the template file in the same directory. Or use the command below, pasting the contents after pressing enter and then pressing ctrl+D in place of `<< EOF`, to signal end of file.
     ```bash
     $ cat -> pathfinder/var/lib/presidents.csv
     title,URI,notify
@@ -84,14 +84,12 @@ Email a report
 Setup a scheduled mail
 
 1. Setup the `custom` or `file` commands as shown above. If using the file option but only want to get an email notification when changes, then set the 'notify' value to be appropriate for the conditions you are waiting for.
-2. Test the command, outside of the active environment. Where FULL_PATH_TO_REPO is an absolute path.
+2. Test the command, outside of the active environment (use `deactivate` or open a new terminal). Where FULL_PATH_TO_REPO below is an absolute path.
     ```bash
-    $ deactivate
-    $ FULL_PATH_TO_REPO/pathfinder/virtualenv/bin/python FULL_PATH_TO_REPO/pathfinder/pathfinder/ -h
     $ FULL_PATH_TO_REPO/pathfinder/virtualenv/bin/python \
     FULL_PATH_TO_REPO/pathfinder/pathfinder/ custom Obama https://twitter.com/BarackObama
     ```
-3. Add it to a cron file. For example, enter `crontab -e` then paste the following as your cron schedule file. Visit my [cron tutorials](https://github.com/MichaelCurrin/learn-to-code/tree/master/bash/tutorials/cron) for further details.
+3. Add the command to a cron file. For example, enter `crontab -e` then paste the following as your cron schedule file. Visit my [cron tutorials](https://github.com/MichaelCurrin/learn-to-code/tree/master/bash/tutorials/cron) for further details.
     ```
     # m h  dom mon dow   command
     # 0 12 *   *   *     FULL_PATH_TO_REPO/pathfinder/virtualenv/bin/python FULL_PATH_TO_REPO/pathfinder/pathfinder/ custom Obama https://twitter.com/BarackObama
