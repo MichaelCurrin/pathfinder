@@ -31,7 +31,7 @@ Ad hoc input
 * Specify values in the command-line.
 
     ```bash
-    $ python pathfinder custom --no-send Obama https://twitter.com/BarackObama
+    $ python pathfinder custom Obama https://twitter.com/BarackObama --no-send
     Validating: https://twitter.com/BarackObama
     Result     Title                URI
     ===================================
@@ -46,7 +46,7 @@ Ad hoc input
 
 Read in stored values
 
-1. Create a CSV file in `pathfinder/var/lib/`, based on the template file in the same directory. Or use the command below, pasting the contents after pressing enter and then pressing ctrl+D in place of `<< EOF`, to signal end of file.
+1. Create a CSV file in `pathfinder/var/lib/`, based on the template file in the same directory. Or use the command below, pressing enter after .csv,  pasting the contents, then pressing ctrl+D in place of `<< EOF` to signal end of file.
     ```bash
     $ cat -> pathfinder/var/lib/presidents.csv
     title,URI,notify
@@ -59,7 +59,7 @@ Read in stored values
 2. Read in the CSV file.
 
     ```bash
-    $ python pathfinder file --no-send pathfinder/var/lib/presidents.csv
+    $ python pathfinder file pathfinder/var/lib/presidents.csv --no-send
     Validating: https://twitter.com/BarackObama
     Validating: https://twitter.com/BarackObamaOfficial
     Validating: https://twitter.com/TheBarackObama
