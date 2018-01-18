@@ -77,7 +77,7 @@ Print a report
 
 Email a report
 
-1. Create a local application configuration as per instructions in [SystemInstallation.md](docs/SystemInstallation.md)
+1. Create a local application configuration as per instructions in [SystemInstallation](SystemInstallation.md)
 2. Run a custom or file command. Sending an email is the default behaviour.
 
 

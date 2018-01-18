@@ -33,7 +33,7 @@ It is recommended to install dependencies in a virtual environment in a director
 
 ## Configure
 
-The repo comes with a default configuration file called [app.conf](pathfinder/etc/app.conf). It follows the standard set by the configparser Python package.
+The repo comes with a default configuration file called [app.conf](/pathfinder/etc/app.conf). It follows the standard set by the configparser Python package.
 
 Local configuration is recommended especially to make use of the email functionality, since the default credentials are empty.
 
