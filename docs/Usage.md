@@ -1,6 +1,6 @@
 # Usage
 
-If you do not have the application installed and your environment setup, first see [SystemInstallation](SystemInstallation).
+If you do not have the application installed and your environment setup, first see [SystemInstallation](SystemInstallation.md).
 
 ## Help
 

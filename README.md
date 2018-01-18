@@ -13,7 +13,7 @@ Linux:
 $ git clone git@github.com:MichaelCurrin/pathfinder.git
 ```
 
-See [System Installation](docs/SystemInstallatiom.md) document for setup instructions.
+See [System Installation](docs/SystemInstallation.md) document for setup instructions.
 
 ## Usage example
 
