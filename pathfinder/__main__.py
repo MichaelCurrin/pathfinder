@@ -72,6 +72,10 @@ def build_html(mail_title, uri_data):
                 border-collapse: collapse;
             }}
 
+            th, td {{
+               padding: 5px;
+            }}
+
             footer {{
                position:absolute;
                width:100%;
