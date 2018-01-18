@@ -73,24 +73,28 @@ Read in stored values
 
 Print a report
 
-* _TODO_
+* Use the `--no-send` flag on the `custom` or `file` commands to only print data to the console and prevent attempting to send a mail.
 
 Email a report
 
 1. Create a local application configuration as per instructions in [SystemInstallation.md](docs/SystemInstallation.md)
-2. Run a custom or file command. _TODO add a mail argument_
+2. Run a custom or file command. Sending an email is the default behaviour.
 
 
 Setup a scheduled mail
 
-1. Setup the `custom` or `file` commands as shown above. If using the file option but only want to get an email notification when changes, then set the 'notify' value to be appropriate for the conditions you are waiting for.
+1. Setup the `custom` or `file` commands as shown above. If using the file option but only want to get an email notification when a state change, then set the 'notify' values in the CSV to be appropriate for the conditions you are waiting for.
 2. Test the command, outside of the active environment (use `deactivate` or open a new terminal). Where FULL_PATH_TO_REPO below is an absolute path.
     ```bash
     $ FULL_PATH_TO_REPO/pathfinder/virtualenv/bin/python \
-    FULL_PATH_TO_REPO/pathfinder/pathfinder/ custom Obama https://twitter.com/BarackObama
+    FULL_PATH_TO_REPO/pathfinder/pathfinder/ custom Obama https://twitter.com/BarackObama --subject 'PATHFINDER Obama report'
+
+    $ FULL_PATH_TO_REPO/pathfinder/pathfinder/ file FULL_PATH_TO_REPO/pathfinder/pathfinder/var/lib/president.csv --subject 'PATHFINDER President report'
     ```
 3. Add the command to a cron file. For example, enter `crontab -e` then paste the following as your cron schedule file. Visit my [cron tutorials](https://github.com/MichaelCurrin/learn-to-code/tree/master/bash/tutorials/cron) for further details.
     ```
     # m h  dom mon dow   command
-    # 0 12 *   *   *     FULL_PATH_TO_REPO/pathfinder/virtualenv/bin/python FULL_PATH_TO_REPO/pathfinder/pathfinder/ custom Obama https://twitter.com/BarackObama
+    # 0 12 *   *   *     FULL_PATH_TO_REPO/pathfinder/virtualenv/bin/python FULL_PATH_TO_REPO/pathfinder/pathfinder/ custom Obama https://twitter.com/BarackObama --subject 'PATHFINDER Obama report'
+
+    # 0 12 *   *   *     FULL_PATH_TO_REPO/pathfinder/virtualenv/bin/python FULL_PATH_TO_REPO/pathfinder/pathfinder/ file FULL_PATH_TO_REPO/pathfinder/pathfinder/var/lib/president.csv --subject 'PATHFINDER President report'
     ```
