@@ -1,7 +1,9 @@
 # Path Finder
 > Check whether a URL is valid or not and get a report
 
-_TODO: add screenshot_
+Example:
+
+![Mail screenshot](docs/sample_mail.png "Sample HTML mail output")
 
 ## Installation
 
