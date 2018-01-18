@@ -20,7 +20,7 @@ It is recommended to install dependencies in a virtual environment in a director
     $ mkdir virtualenvs && cd virtualenvs
     $ virtualenv pathfinder --python=python3
     ```
-3. Clone the repo and install depencies into the virtual environment.
+3. Clone the repo and install dependencies into the virtual environment.
     ```bash
     $ mkdir ~/repos && cd ~/repos
     $ git clone git@github.com:MichaelCurrin/pathfinder.git
