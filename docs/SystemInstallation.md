@@ -4,9 +4,9 @@ Instructions are for Linux OS.
 
 ## Setup repo and environment
 
-This app requires Python3. It is recommended to use Python3.5 or higher.
+This app requires Python 3. It is recommended to use Python 3.5 or higher and to have a Gmail account for the email functionality.
 
-It is recommended to install dependencies in a virtual environment in a directory such as the one indicated below.
+Install dependencies and create a virtual environment in a directory such as the one indicated below.
 
 1. Install virtualenv and pip as needed.
     ```bash
@@ -20,7 +20,7 @@ It is recommended to install dependencies in a virtual environment in a director
     $ mkdir virtualenvs && cd virtualenvs
     $ virtualenv pathfinder --python=python3
     ```
-3. Clone the repo and install dependencies into the virtual environment.
+3. Download the repo and install dependencies into the virtual environment.
     ```bash
     $ mkdir ~/repos && cd ~/repos
     $ git clone git@github.com:MichaelCurrin/pathfinder.git
@@ -33,7 +33,7 @@ It is recommended to install dependencies in a virtual environment in a director
 
 ## Configure
 
-The repo comes with a default configuration file called [app.conf](pathfinder/etc/app.conf). It follows the standard set by the configparser Python package.
+The repo comes with a default configuration file called [app.conf](/pathfinder/etc/app.conf). It follows the standard set by the configparser Python package.
 
 Local configuration is recommended especially to make use of the email functionality, since the default credentials are empty.
 
@@ -60,4 +60,4 @@ Creating a file at the first path is preferred for persisting values in the file
 
 _TODO Consider for cross-platform use that ~/.config may not exist and needs instructions to be created on Mac or Linux. And may have a different convention on Windows, or may still be fine._
 
-Now that you're setup, you can follow the [Usage](Usage.md) instructions.
+Now that you're setup, you can follow the [Usage](Usage.md) document instructions.
